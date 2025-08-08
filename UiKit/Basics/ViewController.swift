@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var greetingLabel: UILabel!
-    
     @IBOutlet weak var greetingBtn: UIButton!
     
     override func viewDidLoad() {
@@ -18,7 +17,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         //view.backgroundColor = .purple
         //greetingLabel.text = "Hello, World!"
-        //greet("Adil")
+        greet("Adil")
+        //greetingLabel.textAlignment = .center
+        //greetingLabel.font = .systemFont(ofSize: 30, weight: .bold)
         
     }
     
@@ -27,21 +28,26 @@ class ViewController: UIViewController {
     }
     
     var isLightMode = true
+    func updateGreetingLabel(text: String, textColor: UIColor) {
+        greetingLabel.text = text
+        greetingLabel.textColor = textColor
+        greetingLabel.textAlignment = .center
+        greetingLabel.font = .systemFont(ofSize: 30, weight: .bold)
+    }
+
     @IBAction func greetingBtnTap(_ sender: Any) {
-        print("Button Tapped")
         greet("Adil")
         
         if isLightMode {
             view.backgroundColor = .white
+            updateGreetingLabel(text: "Light Mode", textColor: .black)
         } else {
             view.backgroundColor = .purple
+            updateGreetingLabel(text: "Dark Mode", textColor: .white)
         }
-
-        // flip the flag so next tap changes it
         isLightMode.toggle()
     }
-    
-    
+
 }
 
 //#Preview {
