@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GridViewController().viewDidLoad()
+        //GridViewController().viewDidLoad()
         // Do any additional setup after loading the view.
         //view.backgroundColor = .purple
         //greetingLabel.text = "Hello, World!"
