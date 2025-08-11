@@ -16,7 +16,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        window = UIWindow(windowScene: windowScene)
+//        window?.rootViewController = GridViewController()
+//        window?.makeKeyAndVisible()
+        
+        window = UIWindow(windowScene: windowScene)
+        
+        // Start with LabelsViewController
+        let labelsVC = LabelsViewController()
+        window?.rootViewController = labelsVC
+        window?.makeKeyAndVisible()
+        
+        // After 2 seconds, switch to GridViewController
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let gridVC = GridViewController()
+            self.window?.rootViewController = gridVC
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

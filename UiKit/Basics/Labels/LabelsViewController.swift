@@ -63,7 +63,30 @@ class LabelsViewController: UIViewController {
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Delay before moving to GridViewController
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let gridVC = GridViewController()
+            gridVC.modalTransitionStyle = .crossDissolve
+            gridVC.modalPresentationStyle = .fullScreen
+            
+            // Smooth fade transition
+            if let window = UIApplication.shared.connectedScenes
+                .compactMap({ ($0 as? UIWindowScene)?.keyWindow }).first {
+                UIView.transition(with: window,
+                                  duration: 0.5,
+                                  options: .transitionCrossDissolve,
+                                  animations: {
+                    window.rootViewController = gridVC
+                })
+            }
+        }
+    }
 }
+
 
 #Preview {
     LabelsViewController()
